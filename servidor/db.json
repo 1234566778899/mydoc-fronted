@@ -1,0 +1,464 @@
+{
+  "proveedores": [
+    {
+      "id": 1,
+      "nombre": "PFIZER",
+      "pais": "Estados Unidos",
+      "contacto": "+41 56789"
+    }
+  ],
+  "productos": [
+    {
+      "id": 1,
+      "id_proveedor": 1,
+      "nombre": "Ibuprofeno",
+      "registro_sanitario": "PAHO",
+      "presentacion": "200 mg - Suspencion",
+      "tipo": "Genérico",
+      "esRecetado": true,
+      "descripcion": "Capsula"
+    },
+    {
+      "id": 2,
+      "id_proveedor": 1,
+      "nombre": "Paracetamol",
+      "registro_sanitario": "PAHO",
+      "presentacion": "500 mg - Tableta",
+      "tipo": "Laboratorio",
+      "esRecetado": false,
+      "descripcion": "Capsula"
+    },
+    {
+      "id": 3,
+      "id_proveedor": 1,
+      "nombre": "Penicilina",
+      "registro_sanitario": "PAHO - Aerosol",
+      "presentacion": "250 mg",
+      "tipo": "Laboratorio",
+      "esRecetado": true,
+      "descripcion": "Capsula"
+    },
+    {
+      "id": 4,
+      "id_proveedor": 1,
+      "nombre": "AMITRIPTILINA CLORHIDRATO",
+      "registro_sanitario": "PAHO - Aerosol",
+      "presentacion": "25mg - TABLETA",
+      "tipo": "Laboratorio",
+      "esRecetado": true,
+      "descripcion": "Capsula"
+    },
+    {
+      "id": 5,
+      "id_proveedor": 1,
+      "nombre": "AMLODIPINO",
+      "registro_sanitario": "PAHO - Aerosol",
+      "presentacion": "10 mg - TABLETA",
+      "tipo": "Laboratorio",
+      "esRecetado": true,
+      "descripcion": "Capsula"
+    },
+    {
+      "id": 6,
+      "id_proveedor": 1,
+      "nombre": "AMOXICILINA",
+      "registro_sanitario": "PAHO - Aerosol",
+      "presentacion": "250mg/5mL - SUSPENSION",
+      "tipo": "Laboratorio",
+      "esRecetado": true,
+      "descripcion": "Capsula"
+    },
+    {
+      "id": 7,
+      "id_proveedor": 1,
+      "nombre": "AZITROMICINA",
+      "registro_sanitario": "PAHO - Aerosol",
+      "presentacion": "200 mg/5 mL - SUSPENSION",
+      "tipo": "Laboratorio",
+      "esRecetado": true,
+      "descripcion": "Capsula"
+    }
+  ],
+  "clientes": [
+    {
+      "id": 1,
+      "nombre": "Jean",
+      "apellido": "Zamora Valdez",
+      "dni": "61126395"
+    }
+  ],
+  "farmacias": [
+    {
+      "id": 1,
+      "nombre": "Incafarma",
+      "RUC": "R2145ACV-2D45",
+      "Distrito": "San Miguel",
+      "Provincia": "Lima",
+      "Departamento": "Lima",
+      "ApellidoTitular": "Rodriguez",
+      "NombreTitular": "Carmen",
+      "Telefono": "9325972200",
+      "correo": "inca@gmail.com",
+      "password": "upc123"
+    },
+    {
+      "id": 2,
+      "nombre": "MiFarma",
+      "RUC": "R2023CV-2D45",
+      "Distrito": "San Isidro",
+      "Provincia": "Lima",
+      "Departamento": "Lima",
+      "ApellidoTitular": "Montez",
+      "NombreTitular": "Rolando",
+      "Telefono": "981243220",
+      "correo": "mi@gmail.com",
+      "password": "upc321"
+    },
+    {
+      "id": 3,
+      "nombre": "NewFarma",
+      "RUC": "12345678921",
+      "Departamento": "San Martin",
+      "Provincia": "Tocache",
+      "Distrito": "Nuevo Progreso",
+      "ApellidoTitular": "Vilchez Aponte",
+      "NombreTitular": "Jair",
+      "Telefono": "932597220",
+      "correo": "jair@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": 4,
+      "nombre": "JairFarma",
+      "RUC": "12345678909",
+      "Departamento": "Lima",
+      "Provincia": "Lima",
+      "Distrito": "San Miguel",
+      "ApellidoTitular": "Vilchez",
+      "NombreTitular": "Jair",
+      "Telefono": "932597220",
+      "correo": "jr@gmail.com",
+      "password": "87654321"
+    },
+    {
+      "id": 5,
+      "nombre": "FarmaNatural",
+      "RUC": "11111111111",
+      "Departamento": "Lima",
+      "Provincia": "Lima",
+      "Distrito": "Lima",
+      "ApellidoTitular": "Carlos",
+      "NombreTitular": "Ordaz",
+      "Telefono": "932597220",
+      "correo": "carlos@gmail.com",
+      "password": "12345678"
+    }
+  ],
+  "ventas": [
+    {
+      "id": 1,
+      "id_farmacia": 1,
+      "id_cliente": 1,
+      "fecha": "9/25/2022",
+      "total": 15.5,
+      "numero_boleta": "00001",
+      "forma_pago": "EFECTIVO"
+    }
+  ],
+  "detalle_venta": [
+    {
+      "id": 1,
+      "id_producto": 1,
+      "id_venta": 1,
+      "precio_unitario": 2.3,
+      "cantidad": 3,
+      "descuento": 0,
+      "subtotal": 6.9
+    },
+    {
+      "id": 2,
+      "id_producto": 2,
+      "id_venta": 1,
+      "precio_unitario": 5.1,
+      "cantidad": 2,
+      "descuento": 0,
+      "subtotal": 10.2
+    }
+  ],
+  "stocks": [
+    {
+      "id": 1,
+      "id_farmacia": 1,
+      "id_producto": 1,
+      "cantidad_unidad": 45,
+      "precio_unitario": 2.5
+    },
+    {
+      "id": 2,
+      "id_farmacia": 1,
+      "id_producto": 2,
+      "cantidad_unidad": 65,
+      "precio_unitario": 4.5
+    },
+    {
+      "id": 3,
+      "id_farmacia": 2,
+      "id_producto": 1,
+      "cantidad_unidad": 34,
+      "precio_unitario": 2.5
+    },
+    {
+      "id": 4,
+      "id_farmacia": "1",
+      "id_producto": 3,
+      "cantidad_unidad": 120,
+      "precio_unitario": 1.2
+    },
+    {
+      "id": 5,
+      "id_farmacia": "1",
+      "id_producto": 4,
+      "cantidad_unidad": 170,
+      "precio_unitario": 1.4
+    },
+    {
+      "id": 6,
+      "id_farmacia": "1",
+      "id_producto": 5,
+      "cantidad_unidad": 200,
+      "precio_unitario": 1.5
+    },
+    {
+      "id": 7,
+      "id_farmacia": "1",
+      "id_producto": 3,
+      "cantidad_unidad": 120,
+      "precio_unitario": 1.5
+    },
+    {
+      "id": 8,
+      "id_farmacia": "1",
+      "id_producto": 4,
+      "cantidad_unidad": 120,
+      "precio_unitario": 4.5
+    },
+    {
+      "id": 9,
+      "id_farmacia": "3",
+      "id_producto": 1,
+      "cantidad_unidad": 140,
+      "precio_unitario": 12
+    },
+    {
+      "id": 10,
+      "id_farmacia": "2",
+      "id_producto": 2,
+      "cantidad_unidad": 310,
+      "precio_unitario": 1.3
+    },
+    {
+      "id": 11,
+      "id_farmacia": "2",
+      "id_producto": 4,
+      "cantidad_unidad": 90,
+      "precio_unitario": 2.3
+    },
+    {
+      "id": 12,
+      "id_farmacia": "2",
+      "id_producto": 1,
+      "cantidad_unidad": 1001,
+      "precio_unitario": 1.1
+    },
+    {
+      "id": 13,
+      "id_farmacia": "1",
+      "id_producto": 2,
+      "cantidad_unidad": 150,
+      "precio_unitario": 1.2
+    },
+    {
+      "id": 14,
+      "id_farmacia": "1",
+      "id_producto": 7,
+      "cantidad_unidad": 2000,
+      "precio_unitario": 1.3
+    },
+    {
+      "id": 15,
+      "id_farmacia": "1",
+      "id_producto": 2,
+      "cantidad_unidad": 100,
+      "precio_unitario": 1.3
+    },
+    {
+      "id": 16,
+      "id_farmacia": "1",
+      "id_producto": 4,
+      "cantidad_unidad": 120,
+      "precio_unitario": 1.2
+    }
+  ],
+  "compras": [
+    {
+      "id": 1,
+      "id_farmacia": "1",
+      "id_producto": 2,
+      "precio_unidad": 1.2,
+      "cantidad": 100,
+      "total": 120,
+      "registrado": false,
+      "fecha": "2022-09-30T05:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "id_farmacia": "2",
+      "id_producto": 5,
+      "precio_unidad": 1.5,
+      "cantidad": 120,
+      "total": 180,
+      "registrado": false,
+      "fecha": "2022-09-30T05:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "id_farmacia": "2",
+      "id_producto": 2,
+      "precio_unidad": 3.1,
+      "cantidad": 190,
+      "total": 589,
+      "registrado": false,
+      "fecha": "2022-09-30T05:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "id_farmacia": "2",
+      "id_producto": 1,
+      "precio_unidad": 1.8,
+      "cantidad": 1000,
+      "total": 1800,
+      "registrado": false,
+      "fecha": "2022-09-30T05:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "id_farmacia": "1",
+      "id_producto": 1,
+      "precio_unidad": 1.2,
+      "cantidad": 120,
+      "total": 144,
+      "registrado": false,
+      "fecha": "2022-09-30T05:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "id_farmacia": "1",
+      "id_producto": 3,
+      "precio_unidad": 1.2,
+      "cantidad": 400,
+      "total": 480,
+      "registrado": false,
+      "fecha": "2022-09-30T05:00:00.000Z"
+    },
+    {
+      "id": 7,
+      "id_farmacia": "1",
+      "id_producto": 4,
+      "precio_unidad": 1.4,
+      "cantidad": 170,
+      "total": 237.99999999999997,
+      "registrado": false,
+      "fecha": "2022-09-30T05:00:00.000Z"
+    },
+    {
+      "id": 8,
+      "id_farmacia": "1",
+      "id_producto": 5,
+      "precio_unidad": 1.7,
+      "cantidad": 700,
+      "total": 1190,
+      "registrado": false,
+      "fecha": "2022-09-30T05:00:00.000Z"
+    },
+    {
+      "id": 9,
+      "id_farmacia": "1",
+      "id_producto": 6,
+      "precio_unidad": 1.5,
+      "cantidad": 310,
+      "total": 465,
+      "registrado": false,
+      "fecha": "2022-09-30T05:00:00.000Z"
+    },
+    {
+      "id": 10,
+      "id_farmacia": "1",
+      "id_producto": 7,
+      "precio_unidad": 1.4,
+      "cantidad": 190,
+      "total": 266,
+      "registrado": false,
+      "fecha": "2022-09-30T05:00:00.000Z"
+    },
+    {
+      "id": 11,
+      "id_farmacia": "1",
+      "id_producto": 4,
+      "precio_unidad": 1.2,
+      "cantidad": 120,
+      "total": 144,
+      "registrado": false,
+      "fecha": "2022-09-30T05:00:00.000Z"
+    },
+    {
+      "id": 12,
+      "id_farmacia": "1",
+      "id_producto": 6,
+      "precio_unidad": 3.1,
+      "cantidad": 500,
+      "total": 1550,
+      "registrado": false,
+      "fecha": "2022-09-30T05:00:00.000Z"
+    },
+    {
+      "id": 13,
+      "id_farmacia": "1",
+      "id_producto": 1,
+      "precio_unidad": 2.3,
+      "cantidad": 3000,
+      "total": 6899.999999999999,
+      "registrado": false,
+      "fecha": "2022-09-30T05:00:00.000Z"
+    },
+    {
+      "id": 14,
+      "id_farmacia": "1",
+      "id_producto": 6,
+      "precio_unidad": 1.4,
+      "cantidad": 670,
+      "total": 937.9999999999999,
+      "registrado": false,
+      "fecha": "2022-09-30T05:00:00.000Z"
+    }
+  ],
+  "consultas": [
+    {
+      "id": 1,
+      "nombre": "Jair Vilchez",
+      "correo": "inca@gmail.com",
+      "descripcion": "Necesito mas info"
+    },
+    {
+      "id": 2,
+      "nombre": "carlos ordaz",
+      "correo": "ordaz@gmail.com",
+      "descripcion": "quiero mas info por favor"
+    },
+    {
+      "id": 3,
+      "nombre": "Jair Vilchez",
+      "correo": "jair@gmail.com",
+      "descripcion": "Como creo una cuenta"
+    }
+  ]
+}

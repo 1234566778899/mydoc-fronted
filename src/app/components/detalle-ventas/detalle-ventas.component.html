@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <br>
+    <h1>Mis ventas los ultimos 3 días</h1>
+    <br>
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <td>N°</td>
+                <td>NÚMERO DE BOLETA</td>
+                <td>CLIENTE</td>
+                <td>FORMA DE PAGO</td>
+                <td>FECHA</td>
+                <td>TOTAL</td>
+                <td>ELIMINAR</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let orden of ordenes; let i=index" [ngClass]="{'blanco':i%2==0}">
+                <td>{{i+1}}</td>
+                <td>{{orden.numeroBoleta}}</td>
+                <td>{{orden.cliente.nombre}} {{orden.cliente.apellido}}</td>
+                <td>{{orden.formaPago}}</td>
+                <td>{{orden.fecha|date:'shortDate'}}</td>
+                <td>{{orden.total |currency:'USD'}}</td>
+                <td><button class="boton" (click)="eliminar(orden.id)"><i class="fa-solid fa-trash"></i></button></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+</div>

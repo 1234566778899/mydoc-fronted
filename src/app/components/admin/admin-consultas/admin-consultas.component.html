@@ -1,0 +1,28 @@
+<div class="tabla">
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>NOMBRE</td>
+                <td>CORREO</td>
+                <td>CONSULTA</td>
+                <td>ESTADO</td>
+                <td>ACCIÓN</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let far of consultas; let i=index" [ngClass]="{'blanco':i%2==0}">
+                <td>{{far.id}}</td>
+                <td>{{far.nombre}}</td>
+                <td>{{far.correo}}</td>
+                <td>{{far.descripcion}}</td>
+                <td>{{far.estado}}</td>
+                <td>
+                    <button mat-raised-button *ngIf="far.estado=='PENDIENTE'"
+                        (click)="cambiarEstado(far)">Resolver</button>
+                    <button mat-raised-button *ngIf="far.estado!='PENDIENTE'" disabled="true">RESUELTO</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

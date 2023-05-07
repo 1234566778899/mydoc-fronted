@@ -1,0 +1,96 @@
+<app-navbar></app-navbar>
+<div class="container mt-2">
+    <h1>COMPRAS</h1>
+    <form [formGroup]="myform" autocomplete="off">
+        <p>Productos</p>
+        <div class="card py-4 px-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="standard" class="w-100">
+                            <mat-label>Nombre del producto</mat-label>
+                            <input type="text" placeholder="Escribe el nombre del producto" matInput
+                                [formControl]="myControl" [matAutocomplete]="auto">
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option.nombre">
+                                    <div (click)="conseguirProducto(option)">{{option.nombre}},
+                                        {{option.presentacion}}</div>
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="standard" class="w-100">
+                            <mat-label>Precio compra</mat-label>
+                            <input matInput placeholder="Escriba su nombre.." #input formControlName="precio"
+                                type="number">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field appearance="standard" class="w-100">
+                            <mat-label>Unidades</mat-label>
+                            <input matInput placeholder="Cantidad de unidades.." #input formControlName="cantidad"
+                                type="number">
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Fecha</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="fecha">
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <br>
+                        <button mat-raised-button color="primary" [disabled]="myform.invalid"
+                            (click)="addLista()">Añadir a la
+                            lista</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </form>
+    <br>
+    <p>Lista de productos</p>
+    <div class="card card-table tabla p-2">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio unitario</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                    <th>Quitar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let compra of compras;let i=index">
+                    <td>{{getNombre(compra.producto.id)}}</td>
+                    <td>{{compra.precioCompra|currency:'USD'}}</td>
+                    <td>{{compra.cantidadDisponible}}</td>
+                    <td>{{compra.inversion | currency:'USD'}}</td>
+                    <td>
+                        <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon"
+                            (click)="quitarLista(i)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+        <p *ngIf="compras.length<=0" class="text-center">Agrega productos a la lista</p>
+    </div>
+    <div class="my-4 d-flex justify-content-between">
+        <div>
+            <button mat-raised-button color="secondary" class="mb-2 me-3" routerLink="/inventario/{{idFarmacia}}">Cancelar </button>
+            <button mat-raised-button color="primary" (click)="enviarCompras()">Registrar</button>
+        </div>
+        <div>
+            <span class="fs-5">Monto invertido: </span>
+            <span class="fs-1">{{getTotal()|currency:'USD'}}</span>
+        </div>
+    </div>
+    <br>
+</div>

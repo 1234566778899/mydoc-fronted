@@ -1,0 +1,27 @@
+<div class="tabla">
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <td>NOMBRE</td>
+                <td>PRESENTACIÓN</td>
+                <td>TIPO</td>
+                <td>REGISTRO SANITARIO</td>
+                <td>RECETADO</td>
+                <td>DESCRIPCIÓN</td>
+                <td>PROVEEDOR</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let far of productos; let i=index" [ngClass]="{'blanco':i%2==0}">
+                <td>{{far.nombre}}</td>
+                <td>{{far.presentacion}}</td>
+                <td>{{far.tipo}}</td>
+                <td>{{far.registroSanitario}}</td>
+                <td>{{far.esRecetado.toString()|uppercase}}</td>
+                <td>{{far.descripcion}}</td>
+                <td>{{far.proveedor.nombre}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+</div>

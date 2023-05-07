@@ -1,0 +1,20 @@
+.body {
+    background-repeat: no-repeat;
+    background-image: url("./fondo1.jpg");
+    background-size: cover;
+    background-position: absolute;
+    align-items: center;
+}
+
+@media screen and (max-width: 700px) {
+    .body{
+        background-image: none;
+    }
+}
+
+.bg-azul{
+    background-color: rgb(63, 81, 181);
+}
+.text-azul{
+    color: rgb(63, 81, 181);
+}

@@ -1,0 +1,38 @@
+<div class="tabla">
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <td>RUC</td>
+                <td>PROPIETARIO</td>
+                <td>CORREO</td>
+                <td>TELÉFONO</td>
+                <td>DEPARTAMENTO</td>
+                <td>PROVINCIA</td>
+                <td>DISTRITO</td>
+                <td>ESTADO</td>
+                <td>ACCIÓN</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let far of farmacias; let i=index" [ngClass]="{'blanco':i%2==0}">
+                <td>{{far.ruc}}</td>
+                <td>{{far.apellido}}, {{far.nombre}}</td>
+                <td>{{far.correo}}</td>
+                <td>{{far.telefono}}</td>
+                <td>{{far.departamento}}</td>
+                <td>{{far.provincia}}</td>
+                <td>{{far.distrito}}</td>
+                <td>
+                    <span *ngIf="far.activo">ACTIVO</span>
+                    <span *ngIf="!far.activo">BLOQUEADO</span>
+                </td>
+                <td>
+                    <button mat-raised-button (click)="cambiarEstado(far.id, far)" *ngIf="far.activo"
+                        class="bg-danger text-white">BLOQUEAR</button>
+                    <button mat-raised-button (click)="cambiarEstado(far.id, far)" *ngIf="!far.activo"
+                        class="bg-success text-white">HABILITAR</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,32 @@
+<div class="vh-100 fondo">
+    <app-nav-landing></app-nav-landing>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 mt-5 py-5">
+                <mat-card>
+                    <h1 class="text-center fw-bolder">Validar código de seguridad</h1>
+                    <br>
+                    <form [formGroup]="myform">
+                        <div class="d-flex justify-content-center">
+                            <div>
+                                <input type="text" class="codigo me-2" formControlName="c1">
+                                <input type="text" class="codigo me-2" formControlName="c2">
+                                <input type="text" class="codigo me-2" formControlName="c3">
+                                <input type="text" class="codigo" formControlName="c4">
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <button mat-raised-button color="primary" class="w-100"
+                            (click)="validarCodigo()">Ingresar</button>
+                    </form>
+                    <br>
+                    <br>
+                    <p class="text-center text-danger">Revisa tu correo electronico e ingresa el codigo de seguridad</p>
+                </mat-card>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</div>

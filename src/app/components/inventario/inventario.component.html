@@ -1,0 +1,102 @@
+<app-navbar></app-navbar>
+<div class="fondo">
+    <br>
+    <div class="container">
+        <h1>INVENTARIO</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field appearance="standard" class="input-find w-100">
+                    <mat-label>Buscar producto</mat-label>
+                    <input matInput placeholder="Panadol 20 mg.." #input (input)="buscarProducto(input.value)">
+                </mat-form-field>
+            </div>
+            <div class="col-md-6 text-end">
+                <button mat-raised-button color="primary" class="ms-2 mb-2" routerLink="/compras/{{idFarmacia}}">Añadir
+                    producto</button>
+            </div>
+        </div>
+
+
+
+        <div class="contenido">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="producto">
+                        <th mat-header-cell *matHeaderCellDef class="text-center"> PRODUCTO </th>
+                        <td mat-cell *matCellDef="let row" class="text-center"
+                            [ngClass]="{'text-danger':row.cantidadDisponible==0}"> {{row.producto.nombre}}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="presentacion">
+                        <th mat-header-cell *matHeaderCellDef class="text-center"> PRODUCTO </th>
+                        <td mat-cell *matCellDef="let row" class="text-center"
+                            [ngClass]="{'text-danger':row.cantidadDisponible==0}"> {{row.producto.presentacion}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="tipo">
+                        <th mat-header-cell *matHeaderCellDef class="text-center"> TIPO </th>
+                        <td mat-cell *matCellDef="let row" class="text-center"
+                            [ngClass]="{'text-danger':row.cantidadDisponible==0}"> {{row.producto.tipo}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="proveedor">
+                        <th mat-header-cell *matHeaderCellDef class="text-center"> PROVEEDOR </th>
+                        <td mat-cell *matCellDef="let row" class="text-center"
+                            [ngClass]="{'text-danger':row.cantidadDisponible==0}"> {{row.producto.proveedor.nombre}}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="recetado">
+                        <th mat-header-cell *matHeaderCellDef class="text-center"> RECETADO </th>
+                        <td mat-cell *matCellDef="let row" class="text-center"
+                            [ngClass]="{'text-danger':row.cantidadDisponible==0}"> {{row.producto.esRecetado}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="cantidad">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">CANTIDAD </th>
+                        <td mat-cell *matCellDef="let row" class="text-center"
+                            [ngClass]="{'text-danger':row.cantidadDisponible==0}"> {{row.cantidadDisponible}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="compra">
+                        <th mat-header-cell *matHeaderCellDef class="text-center"> PRECIO COMPRA </th>
+                        <td mat-cell *matCellDef="let row" class="text-center"
+                            [ngClass]="{'text-danger':row.cantidadDisponible==0}"> {{row.precioCompra|currency:'USD'}}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="venta">
+                        <th mat-header-cell *matHeaderCellDef class="text-center"> PRECIO VENTA </th>
+                        <td mat-cell *matCellDef="let row" class="text-center"
+                            [ngClass]="{'text-danger':row.cantidadDisponible==0}"> {{row.precioVenta|currency:'USD'}}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="edit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center"> EDITAR </th>
+                        <td mat-cell *matCellDef="let row" class="text-center">
+                            <button mat-raised-button routerLink="/edit-stock/{{idFarmacia}}/{{row.id}}"
+                                [ngClass]="{'edit':row.fechaVencimiento==row.fechaCompra||row.precioVenta==0}">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="delete">
+                        <th mat-header-cell *matHeaderCellDef class="text-center"> ELIMINAR </th>
+                        <td mat-cell *matCellDef="let row" class="text-center">
+                            <button mat-raised-button (click)="eliminar(row.id)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4" *ngIf="stock">No se encontro ningun producto"</td>
+                    </tr>
+                </table>
+                <mat-paginator #mipaginator [pageSizeOptions]="[5,10, 25,50, 100]" aria-label="Select page of users">
+                </mat-paginator>
+            </div>
+        </div>
+        <br>
+        <br>
+    </div>
+</div>

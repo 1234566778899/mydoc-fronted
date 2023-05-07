@@ -1,0 +1,22 @@
+.tabla {
+    overflow-x: auto;
+}
+
+.par {
+    background-color: rgb(27, 56, 62);
+    border-radius: 30px;
+}
+
+.impar {
+    background-color: rgb(25, 117, 132);
+    border-radius: 30px;
+}
+
+.fila {
+    margin: 1px 0px;
+    padding: 6px 0px;
+}
+
+.blanco {
+    background-color: white;
+}

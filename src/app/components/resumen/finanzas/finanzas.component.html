@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+<div class="contenido">
+    <br>
+    <div class="container">
+        <h1>MIS FINANZAS</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="reporte content px-5 py-3 mb-3">
+                    <h1>VENTAS DE HOY</h1>
+                    <div class="h-75 d-flex justify-content-center align-items-center">
+                        <div class="fs-1">
+                            <span class="fw-bolder">{{cantidad}} </span>
+                            <span>Ventas totales</span>
+                        </div>
+                    </div>
+                    <div class="text-end"><span>total: </span> <span
+                            class="fs-2 text-dark">{{total|currency:'USD'}}</span></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="reporte mb-3 py-1">
+                    <app-finanzas-resumen-semanal></app-finanzas-resumen-semanal>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="reporte mb-3 p-1">
+                    <app-finanzas-ganancias></app-finanzas-ganancias>
+                </div>
+            </div>
+            <div class="col-md-6 px-2">
+                <div class="reporte py-1">
+                    <app-finanzas-productos></app-finanzas-productos>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>

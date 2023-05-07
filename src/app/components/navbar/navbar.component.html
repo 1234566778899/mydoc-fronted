@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-azul fs-6">
+    <div class="container">
+        <a class="navbar-brand" routerLink="/landing"> <img src="../../../assets/logo2.svg" alt="logo" class="logo"> Mi
+            DocVirtual</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active btn enlace" routerLink="/inventario/{{id}}">Inventario</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active btn enlace" routerLink="/finanzas/{{id}}">Finanzas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active btn enlace" routerLink="/ventas/{{id}}">Ventas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active btn enlace" routerLink="/clientes/{{id}}">Clientes</a>
+                </li>
+            </ul>
+            <div class="text-white text-center">
+                <div class="d-inline-block">
+                    <i matBadge="{{notificaciones.length}}" class="fa-solid fa-bell me-5 icon-notify"
+                        matBadgeColor="warn" (click)="abrirMenu()" matBadge="8" matBadgePosition="after"
+                        matBadgeColor="accent"> </i>
+                    <div class="notify card p-2" *ngIf="visible">
+                        <div class="d-flex justify-content-between">
+                            <h3 class="fw-bolder fs-5">Notificaciones</h3>
+                            <i class="fa-solid fa-xmark icon-close" (click)="cerrarMenu()"></i>
+
+                        </div>
+                        <div *ngFor="let element of notificaciones" class="item">
+                            <span (click)="updateNotificacion(element)">{{element.mensaje}}</span>
+                        </div>
+
+                    </div>
+                </div>
+                <a routerLink="/perfil/{{id}}" class="btn-perfil btn enlace">
+                    <i  *ngIf="!imgUrl" class="fa-solid fa-user me-2"></i>
+                    <img *ngIf="imgUrl" src="{{imgUrl}}" alt="" width="30" height="30" class="me-2 img_perfil">
+                    <span *ngIf="farmacia" else #elseBlock>{{farmacia.nombre}}</span>
+                    <ng-template elseBlock><span>Administrador</span> </ng-template>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

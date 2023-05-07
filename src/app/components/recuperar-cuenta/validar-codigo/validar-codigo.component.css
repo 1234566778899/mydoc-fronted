@@ -1,0 +1,17 @@
+.codigo{
+    width: 40px;
+    height: 60px;
+    font-size: 20px;
+    outline: none;
+    text-align: center;
+    padding: 0px;
+    border: 2px solid black;
+}
+
+.fondo {
+    background-repeat: no-repeat;
+    background-image: url("./../../login/fondo2.jpg");
+    background-size: cover;
+    background-position: absolute;
+    align-items: center;
+}

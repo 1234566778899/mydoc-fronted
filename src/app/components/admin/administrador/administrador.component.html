@@ -1,0 +1,103 @@
+<div class="container vh-100">
+    <br>
+    <h1>MIDOCVIRTUAL V1.0 | DATABASE | FARMACIAS</h1>
+    <button mat-raised-button class="me-2" (click)="abrir_productos()">
+        <mat-icon>add_circle_outline</mat-icon>Productos
+    </button>
+    <button mat-raised-button class="me-2" (click)="abrir_proveedor()">
+        <mat-icon>add_circle</mat-icon>Proveedores
+    </button>
+    <button mat-raised-button routerLink="/admin/farmacias" class="me-2 mt-2">
+        <mat-icon>search</mat-icon>Farmacias
+    </button>
+    <button mat-raised-button routerLink="/admin/consultas" class="mt-2">
+        <mat-icon>search</mat-icon>Consultas
+    </button><br>
+    <button mat-raised-button color="primary" class="mt-2" routerLink="/admin/productos">
+        <mat-icon>search</mat-icon>Productos
+    </button>
+    <button mat-raised-button color="primary" class="ms-2 mt-2" routerLink="/admin/proveedores">
+        <mat-icon>search</mat-icon>Proveedores
+    </button>
+    <router-outlet></router-outlet>
+    <div class="overlay" *ngIf="abrir_add_productos">
+        <div class="popup">
+            <div class="text-end">
+                <button class="btn" (click)="close_productos()">
+                    <mat-icon class="icon-close">close</mat-icon>
+                </button>
+            </div>
+            <h1 class="text-center">AGREGAR PRODUCTO</h1>
+            <form [formGroup]="myForm1">
+                <mat-form-field appearance="standard" class="w-100">
+                    <mat-label>Nombre del producto</mat-label>
+                    <input matInput placeholder="Paracetamol" formControlName="nombre_producto">
+                </mat-form-field>
+                <mat-form-field appearance="standard" class="w-100">
+                    <mat-label>Presentacion</mat-label>
+                    <input matInput placeholder="Paracetamol" formControlName="presentacion">
+                </mat-form-field>
+                <mat-form-field appearance="standard" class="w-100">
+                    <mat-label>Registro sanitario</mat-label>
+                    <input matInput placeholder="Paracetamol" formControlName="registro">
+                </mat-form-field>
+                <mat-form-field appearance="standard" class="w-100">
+                    <mat-label>Tipo</mat-label>
+                    <mat-select formControlName="tipo">
+                        <mat-option value="one">GENÉRICO</mat-option>
+                        <mat-option value="two">LABORATORIO</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <label>¿ES RECETADO?: </label>
+                <mat-radio-group formControlName="recetado">
+                    <mat-radio-button value="true" class="mx-3">SI</mat-radio-button>
+                    <mat-radio-button value="false">NO</mat-radio-button>
+                </mat-radio-group>
+
+                <mat-form-field appearance="standard" class="w-100">
+                    <mat-label>Descripción</mat-label>
+                    <input matInput placeholder="Paracetamol" formControlName="descripcion">
+                </mat-form-field>
+                <mat-form-field appearance="standard" class="w-100">
+                    <mat-label>Proveedor</mat-label>
+                    <mat-select formControlName="proveedor">
+                        <mat-option value="{{proveedor.id}}" *ngFor="let proveedor of proveedores">{{proveedor.nombre}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="d-flex justify-content-between">
+                    <button mat-raised-button (click)="close_productos()">Cancelar</button>
+                    <button mat-raised-button (click)="addProducto()" color="primary" [disabled]="myForm1.invalid">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="overlay" *ngIf="abrir_add_proveedor">
+        <div class="popup">
+            <div class="text-end">
+                <button class="btn" (click)="close_proveedor()">
+                    <mat-icon class="icon-close">close</mat-icon>
+                </button>
+            </div>
+            <h1 class="text-center">AGREGAR PROVEEDOR</h1>
+            <form [formGroup]="myForm2">
+                <mat-form-field appearance="standard" class="w-100">
+                    <mat-label>Nombre del proveedor</mat-label>
+                    <input matInput placeholder="Paracetamol" formControlName="nombre_proveedor">
+                </mat-form-field>
+                <mat-form-field appearance="standard" class="w-100">
+                    <mat-label>Pais</mat-label>
+                    <input matInput placeholder="Paracetamol" formControlName="pais">
+                </mat-form-field>
+                <mat-form-field appearance="standard" class="w-100">
+                    <mat-label>Contacto</mat-label>
+                    <input matInput placeholder="Paracetamol" formControlName="contacto">
+                </mat-form-field>
+                <div class="d-flex justify-content-between">
+                    <button mat-raised-button (click)="close_proveedor()">Cancelar</button>
+                    <button mat-raised-button (click)="addProveedor()" color="primary" [disabled]="myForm2.invalid">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

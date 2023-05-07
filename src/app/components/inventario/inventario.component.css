@@ -1,0 +1,34 @@
+
+.edit{
+    animation: mover 1s linear infinite;
+}
+
+@keyframes mover {
+    0%,100% {
+        color: black;
+    }
+
+    50% {
+        color: red;
+    }
+}
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.input-find{
+    width: 50%;
+}
+@media screen and (max-width: 600px) {
+    .input-find{
+        width: 70%;
+    }
+}
+.contenido{
+    overflow-y: auto;
+}

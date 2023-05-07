@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap');
+
+.font {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.bg-azul {
+    background-color: #1E324D;
+}
+
+
+
+.bg-rosa {
+    background-color: #DA0063;
+}
+
+.text-rosa {
+    color: #f1f144;
+}
+
+.navbar {
+    font-size: 18px;
+}
+
+.title {
+    font-size: 58px;
+}
+
+.h-sm {
+    height: 160px;
+}
+
+#wave:before {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 100% 50%;
+    width: 340px;
+    height: 80px;
+    background-color: white;
+    right: -5px;
+    top: 40px;
+}
+
+#wave:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 100% 50%;
+    width: 300px;
+    height: 70px;
+    background-color: #e0efe3;
+    left: 0;
+    top: 27px;
+}
+
+@media (max-width: 576px) {
+    .img-main {
+        display: none;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .parrafo {
+        text-align: center;
+    }
+
+    .cont-btn {
+        display: flex;
+        justify-content: center;
+    }
+
+}
+
+
+.d-none {
+    text-decoration: none;
+}
+
+.bg-negro {
+    background-color: rgb(31, 30, 30);
+}
+
+
+.inter-50 {
+    line-height: 50px;
+}
+
+.inter-30 {
+    line-height: 30px;
+}
+.inter-15 {
+    line-height: 20px;
+}
+
+.img-main {
+    animation: mover 3s linear infinite;
+}
+
+@keyframes mover {
+    0%,100% {
+        transform: translate(-15px, 15px);
+    }
+
+    50% {
+        transform: translate(15px, -15px);
+    }
+}

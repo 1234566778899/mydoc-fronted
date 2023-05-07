@@ -1,0 +1,166 @@
+<div class="body vh-100">
+    <app-nav-landing></app-nav-landing>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mt-5">
+                <div class="card p-4">
+                    <div>
+                        <div>
+                            <h2 class="text-center">Regístrate</h2>
+                        </div>
+                    </div>
+                    <div class="form">
+                        <form [formGroup]="myForm" autocomplete="off">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="standard" class="w-100">
+                                            <mat-label>Nombre de la farmacia</mat-label>
+                                            <input matInput formControlName="name_Farmacia">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="standard">
+                                            <mat-label>RUC</mat-label>
+                                            <input matInput formControlName="RUC" class="w-100">
+                                        </mat-form-field>
+                                    </div>
+                                    <div *ngIf="(myForm.get('name_Farmacia')?.hasError('required') && myForm.get('name_Farmacia')?.touched) || 
+                                                myForm.get('RUC')?.hasError('required') && myForm.get('RUC')?.touched">
+                                        <span class="text-danger"> *Campo obligatorio</span>
+                                    </div>
+                                    <div *ngIf="myForm.get('RUC')?.hasError('maxlength') && myForm.get('RUC')?.touched">
+                                        <span class="text-danger"> El RUC debe tener 11 dígitos</span>
+                                    </div>
+                                    <div *ngIf="myForm.get('RUC')?.hasError('minlength') && myForm.get('RUC')?.touched">
+                                        <span class="text-danger"> El RUC debe tener 11 dígitos</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <mat-form-field appearance="standard" class="w-100">
+                                            <mat-label>Departamento</mat-label>
+                                            <input matInput formControlName="Departamento">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <mat-form-field appearance="standard" class="w-100">
+                                            <mat-label>Provincia</mat-label>
+                                            <input matInput formControlName="Provincia">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <mat-form-field appearance="standard" class="w-100">
+                                            <mat-label>Distrito</mat-label>
+                                            <input matInput formControlName="Distrito">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div
+                                    *ngIf="(myForm.get('Distrito')?.hasError('required') && myForm.get('Distrito')?.touched)||
+                                    (myForm.get('Departamento')?.hasError('required') && myForm.get('Departamento')?.touched) ||
+                                    (myForm.get('Provincia')?.hasError('required') && myForm.get('Provincia')?.touched) ">
+                                    <span class="text-danger"> *Campo obligatorio</span>
+                                </div>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="standard" class="w-100">
+                                            <mat-label>Apellidos</mat-label>
+                                            <input matInput formControlName="Apellidos" placeholder="Ordaz..">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="standard" class="w-100">
+                                            <mat-label>Nombres</mat-label>
+                                            <input matInput formControlName="Nombres" placeholder="Juan..">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div
+                                    *ngIf="(myForm.get('Nombres')?.hasError('required') && myForm.get('Nombres')?.touched) ||
+                                    (myForm.get('Apellidos')?.hasError('required') && myForm.get('Apellidos')?.touched)">
+                                    <span class="text-danger">*Campo obligatorio</span>
+                                </div>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="standard" class="w-100">
+                                            <mat-label>Teléfono</mat-label>
+                                            <input matInput formControlName="Telefono">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="standard" class="w-100">
+                                            <mat-label>Correo</mat-label>
+                                            <input matInput formControlName="email" autocomplete="off" placeholder="juan@gmail.com">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div *ngIf="(myForm.get('email')?.hasError('required') && myForm.get('email')?.touched)  ||
+                                    (myForm.get('Telefono')?.hasError('required') && myForm.get('Telefono')?.touched)">
+                                    <span class="text-danger">*Campo obligatorio</span>
+                                </div>
+                                <div *ngIf="myForm.get('email')?.hasError('email') && myForm.get('email')?.touched">
+                                    <span class="text-danger"> Ingrese un email válido</span>
+                                </div>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="standard" class="w-100">
+                                            <mat-label>Contraseña</mat-label>
+                                            <input matInput [type]="hide ? 'password' : 'text'" matInput
+                                                formControlName="Password" autocomplete="off">
+                                            <button mat-icon-button matSuffix (click)="hide = !hide"
+                                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                            </button>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="standard" class="w-100">
+                                            <mat-label>Confirmar contraseña</mat-label>
+                                            <input matInput [type]="hide ? 'password' : 'text'" matInput
+                                                formControlName="ConfirmPassword">
+                                            <button mat-icon-button matSuffix (click)="hide = !hide"
+                                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                            </button>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div *ngIf="(myForm.get('ConfirmPassword')?.hasError('required') && myForm.get('ConfirmPassword')?.touched) ||
+                                    (myForm.get('Password')?.hasError('required') && myForm.get('Password')?.touched)">
+                                    <span class="text-danger">*Campo obligatorio</span>
+                                </div>
+                                <div
+                                    *ngIf="myForm.get('Password')?.hasError('minlength') && myForm.get('Password')?.touched">
+                                    <span class="text-danger"> La contraseña debe tener 8 caracteres como
+                                        mínimo</span>
+                                </div>
+                                <div *ngIf="(myForm.get('Password')!.value !=myForm.get('ConfirmPassword')!.value) &&
+                                    (myForm.get('Password')?.touched && myForm.get('ConfirmPassword')?.touched)">
+                                    <span class="text-danger"> Las contraseñas no coinciden</span>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <h2 class="brand text-azul ms-3">MiDoc Virtual</h2>
+                                <button color="primary" mat-raised-button [disabled]="myForm.invalid"
+                                    (click)="AddFarmacia()">Registrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+            </div>
+        </div>
+    </div>
+</div>

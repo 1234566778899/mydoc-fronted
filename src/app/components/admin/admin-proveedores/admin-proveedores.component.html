@@ -1,0 +1,20 @@
+<div class="tabla">
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>NOMBRE</td>
+                <td>PAIS</td>
+                <td>CONTACTO</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let far of proveedores; let i=index" [ngClass]="{'blanco':i%2==0}">
+                <td>{{far.id}}</td>
+                <td>{{far.nombre}}</td>
+                <td>{{far.pais}}</td>
+                <td>{{far.contacto}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

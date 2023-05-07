@@ -1,0 +1,43 @@
+<div class="vh-100 fondo">
+    <app-nav-landing></app-nav-landing>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 mt-5 py-5 px-3">
+                <mat-card>
+                    <mat-progress-bar *ngIf="mensaje" mode="indeterminate" class="mb-3"></mat-progress-bar>
+                    <h1 class="text-center fw-bolder">Login</h1>
+                    <div *ngIf="!esValido" class="alert alert-danger" role="alert">
+                        El correo o contraseña son incorrectos
+                    </div>
+                    <form [formGroup]="myform">
+                        <mat-form-field appearance="standard" class="w-100">
+                            <mat-label>Correo electrónico</mat-label>
+                            <input matInput formControlName="email" placeholder="Escriba su correo electrónico.."
+                                #input>
+                        </mat-form-field> <br>
+                        <mat-form-field appearance="standard" class="w-100">
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field> <br>
+                        <br>
+                        <br>
+                        <button mat-raised-button color="primary" class="w-100"
+                            (click)="verificarUsuario()">Ingresar</button>
+                    </form>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="text-center"> <a routerLink="/olvidar" class="enlace">Olvide mi contraseña</a></div>
+                    <br>
+                    <div class="text-center"> <a routerLink="/registrar" class="enlace">Registrarse</a></div>
+                </mat-card>
+            </div>
+            <div class="col-md-4"></div>           
+        </div>
+    </div>
+</div>

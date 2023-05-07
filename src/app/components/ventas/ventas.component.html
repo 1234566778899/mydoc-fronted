@@ -1,0 +1,174 @@
+<app-navbar></app-navbar>
+<br>
+<div class="container">
+    <h1>VENTAS</h1>
+    <div>
+        <div class="d-flex justify-content-between">
+            <span>Información general</span>
+            <button mat-raised-button color="accent" routerLink="/detalleVentas/{{idFarmacia}}">Ver ventas</button>
+        </div>
+        <mat-checkbox class="example-margin" [(ngModel)]="checked">Cliente registrado</mat-checkbox>
+        <form [formGroup]="myform" autocomplete="off">
+            <div class="card py-4 px-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field appearance="standard" class="me-2" [ngClass]="{'w-100':!checked}">
+                                <mat-label>DNI</mat-label>
+                                <input matInput placeholder="Escriba su dni.." formControlName="dni">
+                            </mat-form-field>
+                            <button mat-raised-button *ngIf="checked" (click)="findCliente()"
+                                [disabled]="myform.get('dni')?.invalid">
+                                <mat-icon>search</mat-icon>
+                            </button>
+                            <div *ngIf="checked && !error">Busque al cliente por su dni</div>
+                            <div *ngIf="error && checked" class="text-danger">No se encontró al cliente</div>
+                            <div *ngIf="!checked">
+                                <mat-form-field appearance="standard" class="w-100">
+                                    <mat-label>Nombre del cliente</mat-label>
+                                    <input matInput formControlName="nombre" placeholder="Escriba su nombre..">
+                                </mat-form-field> <br>
+                                <mat-form-field appearance="standard" class="w-100">
+                                    <mat-label>Apellido</mat-label>
+                                    <input matInput placeholder="Escriba su apellido.." formControlName="apellido">
+                                </mat-form-field> <br>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field appearance="standard">
+                                <mat-label>Fecha de venta</mat-label>
+                                <input matInput [matDatepicker]="picker" formControlName="fecha">
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field><br>
+                            <mat-form-field appearance="standard" class="w-100">
+                                <mat-label>N° Boleta</mat-label>
+                                <input matInput placeholder="Escriba su nombre.." formControlName="boleta">
+                            </mat-form-field> <br>
+                            <div class="example-container mt-3">
+                                <label>Forma de pago: </label>
+                                <mat-radio-group formControlName="pago">
+                                    <mat-radio-button value="EFECTIVO">Efectivo</mat-radio-button>
+                                    <mat-radio-button value="TARJETA">Tarjeta</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <p>Productos</p>
+            <div class="card py-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <mat-form-field class="example-full-width" appearance="standard" class="w-100">
+                                            <mat-label>Nombre del producto</mat-label>
+                                            <input type="text" placeholder="Escribe el nombre del producto" matInput
+                                                [formControl]="myControl" [matAutocomplete]="auto">
+                                            <mat-autocomplete #auto="matAutocomplete">
+                                                <mat-option *ngFor="let option of filteredOptions | async"
+                                                    [value]="option.producto.nombre">
+                                                    <div (click)="conseguirProducto(option)">{{option.producto.nombre}},
+                                                        {{option.producto.presentacion}}
+                                                        <span *ngIf="option.fechaVencimiento!=option.fechaCompra" class="fw-lighter fecha">FV:{{option.fechaVencimiento|date:'shortDate'}}</span>
+                                                        <span *ngIf="option.fechaVencimiento==option.fechaCompra" class="fw-lighter text-danger fecha">SIN FECHA DE VENCIMIENTO</span>
+                                                    </div>
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <mat-form-field appearance="standard" class="w-100">
+                                            <mat-label>Precio (S/.)</mat-label>
+                                            <input matInput placeholder="S/. 1.20" formControlName="precio"
+                                                type="number">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <mat-form-field appearance="standard" class="w-100">
+                                            <mat-label>Cantidad</mat-label>
+                                            <input matInput placeholder="5 unidades" formControlName="cantidad"
+                                                type="number">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <mat-form-field appearance="standard" class="w-100">
+                                            <mat-label>Descuento (%)</mat-label>
+                                            <input matInput placeholder="0 %" formControlName="descuento" type="number">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button mat-raised-button color="warn" class="mt-3" (click)="addLista()"
+                                            [disabled]="myform.get('precio')?.invalid||myform.get('cantidad')?.invalid
+                                             ||myform.get('descuento')?.invalid">Agregar
+                                            a la lista</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <br>
+        <p>Lista de productos</p>
+        <div class="card tabla p-2">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Producto</th>
+                        <th>Precio unitario</th>
+                        <th>Cantidad</th>
+                        <th>Descuento</th>
+                        <th>Total</th>
+                        <th>Quitar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let detalle of detalles; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{detalle.producto.nombre}}</td>
+                        <td>{{detalle.precioUnitario|currency:'USD'}}</td>
+                        <td>{{detalle.cantidad}}</td>
+                        <td>{{detalle.descuento|currency:'USD'}}</td>
+                        <td>{{detalle.subTotal|currency:'USD'}}</td>
+                        <td>
+                            <button mat-mini-fab color="primary" (click)="quitarLista(i)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="text-center" *ngIf="detalles.length==0">Agrega productos a a lista</p>
+        </div>
+        <div class="my-4 d-flex justify-content-between">
+            <div>
+                <button mat-raised-button color="secondary" class="me-3">Cancelar</button>
+                <button mat-raised-button color="primary" (click)="addOrden()" [disabled]="myform.invalid">Generar
+                    boleta</button>
+            </div>
+            <div>
+                <span class="fs-5">total: </span>
+                <span class="fs-1">{{total()|currency:'USD'}}</span>
+            </div>
+            
+        </div>
+        <br>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<app-navbar></app-navbar>
+<br>
+<div class="container" *ngIf="orden">
+    <div class="row">
+        <div class="col-md-8">
+
+            <div class="card">
+                <div class="card-header d-flex justify-content-between p-3">
+                    <div class="mt-1">
+                        <span class="fs-5 h1">{{orden.farmacia.nombreFarmacia}}</span><br>
+                        <span>{{orden.farmacia.nombre}} {{orden.farmacia.apellido}}</span> <br>
+                        <span>{{orden.farmacia.distrito}} - {{orden.farmacia.provincia}} -
+                            {{orden.farmacia.departamento}}</span><br>
+                        <span>Mail: {{orden.farmacia.correo}}</span><br>
+                        <span>Telefono: {{orden.farmacia.telefono}}</span>
+                    </div>
+                    <div class="text-center p-2 d-flex align-items-center">
+                        <div>
+                            <span>BOLETA ELECTRÓNICA</span><br>
+                            <span>R.U.C 19847539281</span><br>
+                            <span>N° 0012019</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-4">
+                    <div class="d-flex">
+                        <div class="w-25">
+                            <span class="">Fecha de emición:</span><br>
+                            <span class="">Cliente:</span><br>
+                            <span class="">RUC:</span><br>
+                            <span class="">Forma de pago:</span><br>
+                            <span class="">Tipo de moneda:</span>
+                        </div>
+                        <div class="w-75">
+                            <span>{{orden.fecha|date:'shortDate'}}</span><br>
+                            <span>{{orden.cliente.nombre}}</span><br>
+                            <span>{{orden.farmacia.ruc}}</span><br>
+                            <span>{{orden.formaPago}}</span><br>
+                            <span>Soles (S/.)</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="tabla">
+                        <table class="table text-center">
+                            <thead>
+                                <tr>
+                                    <td>item</td>
+                                    <td>Descripción del producto</td>
+                                    <td>Descuento</td>
+                                    <td>Cantidad</td>
+                                    <td>Precio unitario</td>
+                                    <td>Importe</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of orden.detalleVentas;let i=index ">
+                                    <td>{{i+1}}</td>
+                                    <td>{{item.producto.nombre}} {{item.producto.presentacion}}</td>
+                                    <td>{{item.descuento | currency:'USD'}}</td>
+                                    <td>{{item.cantidad}}</td>
+                                    <td>{{item.precioUnitario|currency:'USD'}}</td>
+                                    <td>{{item.subTotal |currency:'USD'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                        <div><span></span></div>
+                        <div><span class="">Importe total: </span> <span
+                                class="fs-5">{{orden.total|currency:'USD'}}</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between mt-2" id="botones">
+                <button mat-raised-button routerLink="/ventas/{{idFarmacia}}">Realizar otra venta</button>
+                <button mat-raised-button (click)="imprimir()" color="primary">Descargar</button>
+            </div>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+</div>

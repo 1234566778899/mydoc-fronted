@@ -1,0 +1,32 @@
+.bg-azul{
+    background-color: #1E324D;
+}
+.bg-rosa{
+    background-color: #DA0063;
+}
+
+.nav-link:hover{
+    background-color: #233d5e;
+}
+
+.title{
+    animation-name: cambiar;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    font-weight: bolder;
+}
+
+@keyframes cambiar{
+    0%{
+        color: #fcfcfc;
+    }
+    50%{
+       color:  #f1f144;
+      
+    }
+    100%{
+        color: #fcfdff;
+        
+    }
+}

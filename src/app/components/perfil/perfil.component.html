@@ -1,0 +1,123 @@
+<app-navbar></app-navbar>
+<div class="container mt-3">
+    <div class="d-flex">
+        <i class="fa-solid fa-cart-flatbed fs-5 me-2"></i>
+        <h1>Mi Perfil</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4 px-3">
+            <div class="bg-white info text-center py-2">
+                <span>{{nameImg}}</span>
+                <img id="img-perfil" alt="img" *ngIf="photo" src="{{photo}}">
+                <img id="img-perfil" alt="img" *ngIf="!photo"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlR3hMw_3daUL3Uhr5Y3uJh_kMaYzyqQhhPA&usqp=CAU">
+                <div>
+                    <button mat-raised-button (click)="abrir(input)" class="mt-1">
+                        editar
+                        <input id="input-file" #input accept="image/png, image/jpeg" (change)="onChangedFile($event)"
+                            type="file">
+                    </button>
+                    <button *ngIf="selectedFile" mat-raised-button color="primary" class="ms-3" (click)="updatePhoto()">Guardar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 bg-white info">
+            <form [formGroup]="myForm" class="p-3">
+                <p>Información del establecimiento</p>
+                <div class="card">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field appearance="standard" class="w-100">
+                                    <mat-label>Nombre farmacia</mat-label>
+                                    <input matInput placeholder="" #input formControlName="nombreFarmacia">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field appearance="standard" class="w-100">
+                                    <mat-label>RUC</mat-label>
+                                    <input matInput placeholder="" #input formControlName="ruc">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <mat-form-field appearance="standard" class="w-100">
+                                    <mat-label>Departamento</mat-label>
+                                    <input matInput placeholder="" #input formControlName="departamento">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field appearance="standard" class="w-100">
+                                    <mat-label>Provincia</mat-label>
+                                    <input matInput placeholder="" #input formControlName="provincia">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field appearance="standard" class="w-100">
+                                    <mat-label>Distrito</mat-label>
+                                    <input matInput placeholder="" #input formControlName="distrito">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <p>Información de representante</p>
+                <div class="card">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <mat-form-field appearance="standard" class="w-100">
+                                    <mat-label>DNI</mat-label>
+                                    <input matInput placeholder="Dni del user" #input formControlName="dni">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field appearance="standard" class="w-100">
+                                    <mat-label>Nombre</mat-label>
+                                    <input matInput placeholder="Nombre del user" #input formControlName="nombre">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field appearance="standard" class="w-100">
+                                    <mat-label>Apellido</mat-label>
+                                    <input matInput placeholder="Apellido del user" #input formControlName="apellido">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <p>Información de contacto</p>
+                <div class="card">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field appearance="standard" class="w-100">
+                                    <mat-label>Telefono</mat-label>
+                                    <input matInput placeholder="" #input formControlName="telefono">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field appearance="standard" class="w-100">
+                                    <mat-label>Correo</mat-label>
+                                    <input matInput placeholder="" #input formControlName="correo">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="d-flex justify-content-between mt-3">
+                    <button mat-raised-button color="warn" routerLink="/inventario/{{id}}">Cancelar</button>
+                    <button mat-raised-button color="primary" (click)="updateFarmacia()">Guardar cambios</button>
+                </div>
+                <br>
+                <br>
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+</div>
