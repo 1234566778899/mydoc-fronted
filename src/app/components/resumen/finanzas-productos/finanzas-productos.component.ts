@@ -8,7 +8,7 @@ declare var google: any;
   styleUrls: ['./finanzas-productos.component.css']
 })
 export class FinanzasProductosComponent implements OnInit {
-
+  existenVentas = true;
   constructor(private ordenService: VentasService, private activated: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -17,14 +17,17 @@ export class FinanzasProductosComponent implements OnInit {
     let arr = [['Producto', 'Cantidad']];
     this.ordenService.getProductosMasVendidos(idFarmacia).subscribe(
       (data: any) => {
-        console.log(data);
-        for (let i = 0; i < data.length; i++) {
-          arr.push([data[i][1] + ' ' + data[i][2], data[i][3]])
+        console.log('data: ' + data);
+        if (data) {
+          for (let i = 0; i < data.length; i++) {
+            arr.push([data[i][1] + ' ' + data[i][2], data[i][3]])
+          }
+          google.charts.load("current", { packages: ["corechart"] });
+          this.buildChart(arr);
+        } else {
+          this.existenVentas = false;
         }
-        console.log(arr);
-        google.charts.load("current", { packages: ["corechart"] });
-        this.buildChart(arr);
-      }
+      }, error => console.log('error: ')
     )
   }
   buildChart(arr: any) {

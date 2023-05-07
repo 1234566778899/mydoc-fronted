@@ -72,9 +72,9 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-between mt-2" id="botones">
-                <button mat-raised-button routerLink="/ventas/{{idFarmacia}}">Realizar otra venta</button>
-                <button mat-raised-button (click)="imprimir()" color="primary">Descargar</button>
+            <div class="d-flex justify-content-between mt-2">
+                <button mat-raised-button routerLink="/ventas/{{idFarmacia}}" class="btn-other">Realizar otra venta</button>
+                <button mat-raised-button (click)="imprimir()" color="primary" class="btn-download">Descargar</button>
             </div>
         </div>
         <div class="col-md-4">

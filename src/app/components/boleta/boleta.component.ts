@@ -34,10 +34,7 @@ export class BoletaComponent implements OnInit {
   //   )
   // }
   imprimir() {
-    let botones = document.querySelector('#botones');
-    botones?.remove();
     window.print();
-    this.router.navigate(['/detalleVentas/' + this.idFarmacia])
   }
 
 
