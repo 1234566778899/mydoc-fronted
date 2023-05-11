@@ -1,3 +1,4 @@
+
 import { ActivatedRoute } from '@angular/router';
 import { VentasService } from '../../../services/ventas/ventas.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,15 +10,18 @@ declare var google: any;
 })
 export class FinanzasProductosComponent implements OnInit {
   existenVentas = true;
-  constructor(private ordenService: VentasService, private activated: ActivatedRoute) { }
+  constructor(private ordenService: VentasService, private activated: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
 
+    this.getGrafico();
+  }
+  getGrafico() {
     let idFarmacia = this.activated.snapshot.params['id'];
     let arr = [['Producto', 'Cantidad']];
     this.ordenService.getProductosMasVendidos(idFarmacia).subscribe(
       (data: any) => {
-        console.log('data: ' + data);
         if (data) {
           for (let i = 0; i < data.length; i++) {
             arr.push([data[i][1] + ' ' + data[i][2], data[i][3]])

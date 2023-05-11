@@ -1,3 +1,4 @@
+import { FinanzasComponent } from './../finanzas/finanzas.component';
 import { ActivatedRoute } from '@angular/router';
 import { VentasService } from '../../../services/ventas/ventas.service';
 import { Component, OnInit } from '@angular/core';
@@ -8,11 +9,17 @@ declare var google: any;
   styleUrls: ['./finanzas-ganancias.component.css']
 })
 export class FinanzasGananciasComponent implements OnInit {
-
-  constructor(private ordenService: VentasService, private activated: ActivatedRoute) { }
+  existenVentas = true;
+  constructor(private ordenService: VentasService, private activated: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
 
+    this.getGrafico();
+
+
+  }
+  getGrafico() {
     let arr = [["Mes", "Total", { role: "style" }]]
     let meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
     let id = this.activated.snapshot.params['id'];
@@ -20,10 +27,11 @@ export class FinanzasGananciasComponent implements OnInit {
     let fin = new Date();
     fin.setMonth(0);
     fin.setDate(0);
+
     this.ordenService.getGananciasMensuales(id, fin, actual).subscribe(
       (data: any) => {
         for (let i = 0; i < data.length; i++) {
-          arr.push([meses[data[i][0]-1], data[i][1], this.generarColor()]);
+          arr.push([meses[data[i][0] - 1], data[i][1], this.generarColor()]);
         }
         google.charts.load("current", { packages: ['corechart'] });
         this.buildChart(arr);
@@ -40,29 +48,34 @@ export class FinanzasGananciasComponent implements OnInit {
     return color;
   }
   buildChart(arr: any) {
-    var func = (chart: any) => {
-      var data = new google.visualization.arrayToDataTable(arr);
-      var view = new google.visualization.DataView(data);
-      view.setColumns([0, 1,
-        {
-          calc: "stringify",
-          sourceColumn: 1,
-          type: "string",
-          role: "annotation"
-        },
-        2]);
+    if (arr.length > 1 && arr) {
 
-      var options = {
-        title: "Ganancias mensuales",
-        width: 630,
-        height: 400,
-        bar: { groupWidth: "95%" },
-        legend: { position: "top" },
-      };
-      chart().draw(view, options);
+      var func = (chart: any) => {
+        var data = new google.visualization.arrayToDataTable(arr);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+          {
+            calc: "stringify",
+            sourceColumn: 1,
+            type: "string",
+            role: "annotation"
+          },
+          2]);
+
+        var options = {
+          title: "Ganancias mensuales",
+          width: 630,
+          height: 400,
+          bar: { groupWidth: "95%" },
+          legend: { position: "top" },
+        };
+        chart().draw(view, options);
+      }
+      var chart = () => new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      var callback = () => func(chart);
+      google.charts.setOnLoadCallback(callback);
+    } else {
+      this.existenVentas = false;
     }
-    var chart = () => new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-    var callback = () => func(chart);
-    google.charts.setOnLoadCallback(callback);
   }
 }

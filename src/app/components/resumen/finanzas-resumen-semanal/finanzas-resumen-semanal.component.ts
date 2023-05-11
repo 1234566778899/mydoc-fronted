@@ -8,7 +8,7 @@ declare var google: any;
   styleUrls: ['./finanzas-resumen-semanal.component.css']
 })
 export class FinanzasResumenSemanalComponent implements OnInit {
-
+  existenVentas = true;
   constructor(private ordenService: VentasService, private activated: ActivatedRoute) { }
   ngOnInit(): void {
     let id = this.activated.snapshot.params['id'];
@@ -19,7 +19,7 @@ export class FinanzasResumenSemanalComponent implements OnInit {
       (data: any[]) => {
         let arr: any[] = [['Dia', 'Total(S/.)']];
         for (let i = 0; i < data.length; i++) {
-          arr.push([new Date(data[i][0]).toLocaleDateString('es-us', { weekday: 'short' })+'-'+new Date(data[i][0]).getDate(), data[i][1]]);
+          arr.push([new Date(data[i][0]).toLocaleDateString('es-us', { weekday: 'short' }) + '-' + new Date(data[i][0]).getDate(), data[i][1]]);
         }
         google.charts.load('current', { 'packages': ['line'] });
         this.buildChart(arr);
@@ -28,19 +28,23 @@ export class FinanzasResumenSemanalComponent implements OnInit {
 
   }
   buildChart(arr: any) {
-    var func = (chart: any) => {
-      var data = new google.visualization.arrayToDataTable(arr);
-      var options = {
-        title: 'RESUMEN SEMANAL',
-        curveType: 'function',
-        legend: { position: 'top' }
-      };
-      chart().draw(data, google.charts.Line.convertOptions(options));
-    }
+    if (arr.length > 0) {
+      var func = (chart: any) => {
+        var data = new google.visualization.arrayToDataTable(arr);
+        var options = {
+          title: 'RESUMEN SEMANAL',
+          curveType: 'function',
+          legend: { position: 'top' }
+        };
+        chart().draw(data, google.charts.Line.convertOptions(options));
+      }
 
-    var chart = () => new google.charts.Line(document.getElementById('curve_chart'));
-    var callback = () => func(chart);
-    google.charts.setOnLoadCallback(callback);
+      var chart = () => new google.charts.Line(document.getElementById('curve_chart'));
+      var callback = () => func(chart);
+      google.charts.setOnLoadCallback(callback);
+    } else {
+      this.existenVentas = false;
+    }
   }
 
 }

@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Farmacia } from './../../moduls/farmacias';
 import { FarmaciasService } from './../../services/farmacias/farmacias.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-perfil',
@@ -19,6 +19,8 @@ export class PerfilComponent implements OnInit {
   nameImg!: string;
   objectURL!: any;
   photo: any;
+  miEvento = new EventEmitter<string>();
+
   constructor(private activated: ActivatedRoute, private farmaciaService: FarmaciasService,
     private formBuilder: FormBuilder, private router: Router, private snack: MatSnackBar) { }
 
@@ -80,6 +82,7 @@ export class PerfilComponent implements OnInit {
         this.cargarDatos();
         this.snack.open('La ha editado la foto de perfil', 'OK', { duration: 3000 })
         this.selectedFile = null;
+        this.miEvento.emit('cambiar perfil');
       },
       error: e => console.log(e)
     }

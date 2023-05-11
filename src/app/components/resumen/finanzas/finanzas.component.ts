@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { VentasService } from '../../../services/ventas/ventas.service';
 import { Component, OnInit } from '@angular/core';
-
+import { EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-finanzas',
   templateUrl: './finanzas.component.html',
@@ -18,7 +18,6 @@ export class FinanzasComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.ventasHoy();
   }
-
   ventasHoy() {
     let inicio = new Date();
     let fin = new Date();
