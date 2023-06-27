@@ -1,10 +1,11 @@
-import { PerfilComponent } from './../perfil/perfil.component';
+
 import { NotificacionService } from './../../services/notificacion/notificacion.service';
 import { FarmaciasService } from './../../services/farmacias/farmacias.service';
 import { Farmacia } from './../../moduls/farmacias';
 import { Notificacion } from './../../moduls/notificacion';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +20,7 @@ export class NavbarComponent implements OnInit {
   imgUrl!: any;
   constructor(private activetedRoute: ActivatedRoute,
     private farmaciaService: FarmaciasService, private notificacionService: NotificacionService,
-    private router: Router, private perfilComponent: PerfilComponent) { }
+    private router: Router) { }
 
   ngOnInit(): void {
     this.id = this.activetedRoute.snapshot.params['id'];
@@ -31,17 +32,17 @@ export class NavbarComponent implements OnInit {
       }
     )
 
-    this.perfilComponent.miEvento.subscribe(
-      (data: string) => {
-        this.farmaciaService.getFarmacia(this.id).subscribe(
-          (data: Farmacia) => {
-            if (data.photo)
-              this.imgUrl = 'data:image/jpeg;base64,' + data.photo;
-            this.farmacia = data;
-          }
-        )
-      }
-    )
+    //  this.perfilComponent.miEvento.subscribe(
+    //    (data: string) => {
+    //      this.farmaciaService.getFarmacia(this.id).subscribe(
+    //        (data: Farmacia) => {
+    //          if (data.photo)
+    //            this.imgUrl = 'data:image/jpeg;base64,' + data.photo;
+    //          this.farmacia = data;
+    //        }
+    //      )
+    //    }
+    //  )
 
     this.getNotificaciones();
 

@@ -19,7 +19,7 @@ export class PerfilComponent implements OnInit {
   nameImg!: string;
   objectURL!: any;
   photo: any;
-  miEvento = new EventEmitter<string>();
+  // miEvento = new EventEmitter<string>();
 
   constructor(private activated: ActivatedRoute, private farmaciaService: FarmaciasService,
     private formBuilder: FormBuilder, private router: Router, private snack: MatSnackBar) { }
@@ -82,7 +82,7 @@ export class PerfilComponent implements OnInit {
         this.cargarDatos();
         this.snack.open('La ha editado la foto de perfil', 'OK', { duration: 3000 })
         this.selectedFile = null;
-        this.miEvento.emit('cambiar perfil');
+        // this.miEvento.emit('cambiar perfil');
       },
       error: e => console.log(e)
     }

@@ -42,13 +42,15 @@ export class LoginComponent implements OnInit {
     this.password = this.myform.get('password')?.value;
     this.farmaciaService.getFarmacias().subscribe(
       (data: Farmacia[]) => {
-        let auxfarmacia = data.find(x => x.correo == this.correo && x.password == this.password);
-        if (auxfarmacia) {
-          if (auxfarmacia.activo) {
-            this.router.navigate(["user/" + auxfarmacia.id]);
-          } else {
-            this.snack.open('El usuario esta bloqueado', 'OK', { duration: 5000 });
-          }
+        if (data) {
+          let auxfarmacia = data.find(x => x.correo == this.correo && x.password == this.password);
+          if (auxfarmacia) {
+            if (auxfarmacia.activo) {
+              this.router.navigate(["user/" + auxfarmacia.id]);
+            } else {
+              this.snack.open('El usuario esta bloqueado', 'OK', { duration: 5000 });
+            }
+          } else this.esValido = false;
         } else this.esValido = false;
       }
     );

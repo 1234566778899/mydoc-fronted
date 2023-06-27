@@ -35,9 +35,11 @@ export class InventarioComponent implements OnInit {
   getStocks() {
     this.stockService.getSock(this.idFarmacia).subscribe(
       (data: Stock[]) => {
-        this.dataSource = new MatTableDataSource(data);
-        this.stock = data;
-        this.dataSource.paginator = this.paginator;
+       
+          this.dataSource = new MatTableDataSource(data);
+          this.stock = data;
+          this.dataSource.paginator = this.paginator;
+        
       }
     )
   }
@@ -52,12 +54,12 @@ export class InventarioComponent implements OnInit {
   }
   eliminar(id: number) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Estas seguro?',
+      text: "No seras capáz de revertir estos cambios!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
+      confirmButtonText: 'Si, Eliminar!',
+      cancelButtonText: 'No, cancelar!',
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
@@ -67,8 +69,8 @@ export class InventarioComponent implements OnInit {
           }
         })
         Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
+          'Eliminado!',
+          'El producto ha sido eliminado.',
           'success'
         )
       } else if (
@@ -76,8 +78,8 @@ export class InventarioComponent implements OnInit {
         result.dismiss === Swal.DismissReason.cancel
       ) {
         Swal.fire(
-          'Cancelled',
-          'Your imaginary file is safe :)',
+          'Cancelado',
+          'El producto se ha salvado :)',
           'error'
         )
       }

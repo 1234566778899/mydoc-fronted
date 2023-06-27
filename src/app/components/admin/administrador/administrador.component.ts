@@ -80,8 +80,8 @@ export class AdministradorComponent implements OnInit {
     let producto: Producto = {
       id: 0,
       nombre: this.myForm1.get('nombre_producto')?.value,
-      tipo: this.myForm1.get('nombre_producto')?.value,
-      presentacion: this.myForm1.get('nombre_producto')?.value,
+      tipo: this.myForm1.get('tipo')?.value,
+      presentacion: this.myForm1.get('presentacion')?.value,
       esRecetado: _recetado,
       registroSanitario: this.myForm1.get('registro')?.value,
       descripcion: this.myForm1.get('descripcion')?.value,

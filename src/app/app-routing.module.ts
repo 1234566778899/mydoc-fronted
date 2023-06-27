@@ -1,6 +1,5 @@
 import { AdminProductosComponent } from './components/admin/admin-productos/admin-productos.component';
 import { AdminConsultasComponent } from './components/admin/admin-consultas/admin-consultas.component';
-import { Proveedor } from './moduls/proveedor';
 import { AdminFarmaciasComponent } from './components/admin/admin-farmacias/admin-farmacias.component';
 import { AdministradorComponent } from './components/admin/administrador/administrador.component';
 import { BoletaComponent } from './components/boleta/boleta.component';

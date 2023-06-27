@@ -91,7 +91,7 @@
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
                             </mat-form-field>
-                            <div *ngIf="stock.fechaVencimiento==stock.fechaCompra" class="text-danger">Sin fecha de vencimiento</div>
+                            <div *ngIf="fecha_vencimiento<=stock.fechaCompra" class="text-danger">Sin fecha de vencimiento</div>
                         </td>
                     </tr>
                     <tr>

@@ -58,9 +58,21 @@ export class RegistrarComponent implements OnInit {
 
     this.farmaciaService.getFarmacias().subscribe(
       (data: Farmacia[]) => {
-        let _aux = data.find(x => x.correo == farmacia.correo || x.ruc == farmacia.ruc);
-        if (_aux) {
-          alert('EL CORREO O RUC YA ESTAN REGISTRADOS');
+        if (data) {
+          let _aux = data.find(x => x.correo == farmacia.correo || x.ruc == farmacia.ruc);
+          if (_aux) {
+            alert('EL CORREO O RUC YA ESTAN REGISTRADOS');
+          } else {
+            this.farmaciaService.addFarmacia(farmacia).subscribe({
+              next: (_data) => {
+                this.router.navigate(["/user/" + _data.id]);
+              },
+              error: (e) => {
+                console.log(e);
+              }
+            }
+            )
+          }
         } else {
           this.farmaciaService.addFarmacia(farmacia).subscribe({
             next: (_data) => {

@@ -54,7 +54,7 @@ export class ComprasComponent implements OnInit {
   private _filter(value: string) {
     const filterValue = value.toLowerCase();
     return this.options.filter(option => option.nombre.toLowerCase().includes(filterValue) ||
-      option.presentacion.toLowerCase().includes(filterValue));
+      option.tipo.toLowerCase().includes(filterValue));
   }
 
   loadMyForm() {
